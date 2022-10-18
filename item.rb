@@ -3,11 +3,11 @@ require 'securerandom'
 
 class Item
   attr_accessor :id, :genre, :author, :source, :label, :publish_date, :archived
-  def initialize (publish_date)
+
+  def initialize(publish_date)
     @id = SecoreRandom.random_number(1000)
     @publish_date = Date.strptime(publish_date, '%Y-/%m-/%d')
     @current_date = DateTime.now
-    @archived = false
   end
 
   def add_genre(genre)
@@ -27,7 +27,7 @@ class Item
   end
 
   def move_to_archive
-    archived = can_be_archived?
+    @archived = can_be_archived?
   end
 
   private
