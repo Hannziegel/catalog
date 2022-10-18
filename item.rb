@@ -26,7 +26,7 @@ class Item
     @label = label
   end
 
-  def move_to_archive(archived)
+  def move_to_archive
     archived = can_be_archived?
   end
 
