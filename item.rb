@@ -1,14 +1,14 @@
+require 'date'
+require 'securerandom'
+
 class Item
-  attr_accessor :publish_date
-  attr_reader :id, :archived, :genre, :author, :label
+  attr_accessor :id, :author, :source, :label, :publish_date, :archived
 
   def initialize(publish_date)
-    @id = Random.rand(1..1000)
+    @id = SecureRandom.random_number(1000)
     @genre = nil
-    @author = nil
-    @label = nil
-    @publish_date = publish_date
-    @archived = false
+    @publish_date = Date.strptime(publish_date, '%Y/%m/%d')
+    @current_date = DateTime.now
   end
 
   def genre=(new_genre)
@@ -16,23 +16,25 @@ class Item
     new_genre.items.push(self) unless new_genre.items.include?(self)
   end
 
-  def author=(new_author)
-    @author = new_author
-    new_author.items.push(self) unless new_author.items.include?(self)
+  def add_author(author)
+    @author = author
   end
 
-  def label=(new_label)
-    @label = new_label
-    new_label.items.push(self) unless new_label.items.include?(self)
+  def add_source(source)
+    @source = source
+  end
+
+  def add_label(label)
+    @label = label
   end
 
   def move_to_archive
-    @archived = can_be_archived? if can_be_archived?
+    @archived = can_be_archived?
   end
 
   private
 
   def can_be_archived?
-    (Time.now.year - @publish_date.year) > 10
+    (@current_date - @publish_date) > 10
   end
 end

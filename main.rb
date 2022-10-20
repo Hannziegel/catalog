@@ -27,23 +27,23 @@ class Main
     user_input = gets.chomp
     case user_input
     when '1'
-      p 'not impimented'
+      p 'not impimented1'
     when '2'
       @app.list_all_albums
     when '3'
-      p 'not impimented'
+      p 'not impimented3'
     when '4'
       @app.list_all_genres
     when '5'
-      p 'not impimented'
+      p 'not impimented5'
     when '6'
-      p 'not impimented'
+      p 'not impimented6'
     when '7'
-      p 'not impimented'
+      p 'not impimented7'
     when '8'
       add_new_album_details
     when '9'
-      p 'not impimented'
+      p 'not impimented9'
     when '10'
       @app.preserve_files
       puts 'Exiting the application...'
