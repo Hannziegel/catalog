@@ -1,8 +1,10 @@
 require './app'
 require_relative './music_album/music_album_module'
+require_relative './book/book_input'
 
 class Main
   include MusicAlbumModule
+  include BookInput
 
   def initialize
     @app = App.new
@@ -27,7 +29,7 @@ class Main
     user_input = gets.chomp
     case user_input
     when '1'
-      p 'not impimented1'
+      @app.list_all_books
     when '2'
       @app.list_all_albums
     when '3'
@@ -35,11 +37,11 @@ class Main
     when '4'
       @app.list_all_genres
     when '5'
-      p 'not impimented5'
+      @app.list_all_labels
     when '6'
       p 'not impimented6'
     when '7'
-      p 'not impimented7'
+      input_add_book
     when '8'
       add_new_album_details
     when '9'
