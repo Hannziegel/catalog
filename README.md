@@ -18,7 +18,7 @@
 
 ## UML Diagram structure
 
-![](./assets/imgs/uml-diagram.png)
+![catalog_uml](https://user-images.githubusercontent.com/47539402/197279134-63d9c137-f17b-4683-9ff6-0f9a58cfb130.png)
 
  ## Getting Started
 
