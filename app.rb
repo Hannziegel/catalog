@@ -3,6 +3,8 @@ require_relative './music_album/genre'
 require_relative './music_album/preserver_module'
 require_relative './book/label'
 require_relative './book/book'
+require_relative './game/game'
+require_relative './game/author'
 
 class App
   include PreserverModule
@@ -113,11 +115,51 @@ class App
     end
   end
 
+  def add_game(publish_date, multiplayer, last_played_at, first_name, last_name)
+    new_game = Game.new(publish_date, multiplayer, last_played_at)
+    new_author = Author.new(first_name, last_name)
+    new_game.add_author(new_author)
+
+    game_hash = {
+      'publish_date' => new_game.publish_date,
+      'multiplayer' => new_game.multiplayer,
+      'last_played_at' => new_game.last_played_at,
+      'author' => {
+        'first_name' => new_game.author.first_name,
+        'last_name' => new_game.author.last_name
+      }
+    }
+
+    author_hash = {
+      'first_name' => new_game.author.first_name,
+      'last_name' => new_game.author.last_name
+    }
+
+    @games << game_hash
+    @authors << author_hash
+  end
+
+  def list_all_games
+    puts 'GAMES LIST: '
+    @games.each do |game|
+      puts "\n  Game publish date: #{game['publish_date']}, multiplayer:#{game['multiplayer']}"
+    end
+  end
+
+  def list_all_authors
+    puts 'AUTHORS LIST:'
+    @authors.each do |author|
+      puts "Author First Name: #{author['first_name']}, Author Last Name: #{author['last_name']}"
+    end
+  end
+
   def preserve_files
     save_data_as_json(@albums, 'albums')
     save_data_as_json(@genres, 'genres')
     save_data_as_json(@books, 'books')
     save_data_as_json(@labels, 'labels')
+    save_data_as_json(@games, 'games')
+    save_data_as_json(@authors, 'authors')
   end
 
   private
@@ -127,5 +169,7 @@ class App
     @genres = load_file('genres')
     @books = load_file('books')
     @labels = load_file('labels')
+    @games = load_file('games')
+    @authors = load_file('authors')
   end
 end
