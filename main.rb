@@ -1,10 +1,12 @@
 require './app'
 require_relative './music_album/music_album_module'
 require_relative './book/book_input'
+require_relative './game/game_module'
 
 class Main
   include MusicAlbumModule
   include BookInput
+  include GameModule
 
   def initialize
     @app = App.new
@@ -33,19 +35,19 @@ class Main
     when '2'
       @app.list_all_albums
     when '3'
-      p 'not impimented3'
+      @app.list_all_games
     when '4'
       @app.list_all_genres
     when '5'
       @app.list_all_labels
     when '6'
-      p 'not impimented6'
+      @app.list_all_authors
     when '7'
       input_add_book
     when '8'
       add_new_album_details
     when '9'
-      p 'not impimented9'
+      add_new_game_details
     when '10'
       @app.preserve_files
       puts 'Exiting the application...'

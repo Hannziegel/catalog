@@ -1,4 +1,4 @@
-require_relative 'spec_helper'
+require_relative '../game/game'
 
 describe Game do
   before(:each) do
@@ -12,11 +12,11 @@ describe Game do
     end
 
     it 'Should can_be_archieved equal to true' do
-      expect(@fifa23.can_be_archived?).to eq(true)
+      expect(@fifa23.move_to_archive).to eq(true)
     end
 
     it 'Should can_be_archieved equal to false' do
-      expect(@madden23.can_be_archived?).to eq(false)
+      expect(@madden23.move_to_archive).to eq(false)
     end
   end
 end

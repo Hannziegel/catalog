@@ -1,4 +1,4 @@
-require_relative 'spec_helper'
+require_relative '../game/author'
 
 describe Author do
   before(:each) do
